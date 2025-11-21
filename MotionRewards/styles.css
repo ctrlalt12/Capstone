@@ -25,7 +25,7 @@ header {
 }
 
 .comment-app {
-  background: #000;
+  background: #000; /* dark mode */
   color: white;
   padding: 20px;
   border-radius: 10px;
