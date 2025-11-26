@@ -12,7 +12,8 @@ ${nav(store.nav)}
 ${main(state)}
 ${footer()}
 `;
-router.updatePageLinks();
+
+
 }
 
 
@@ -51,6 +52,10 @@ router.hooks({
     const view = params?.data?.view ? camelCase(params.data.view) : "home";
 
     render(store[view]);
+  },
+  after:(match)=>{
+const view = match?.data?.view ? camelCase(match.data.view) : "home";
+ router.updatePageLinks();
   }
 });
 
