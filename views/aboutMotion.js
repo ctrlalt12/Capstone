@@ -1,6 +1,16 @@
 import html from "html-literal";
 
+import motiononly from "url:../assets/img/views/motiononly.jpeg;
+
+export default state => html`
+   <div id="motiononly">
+      <img src="${motiononly}" alt="">
+      <div class="attribution">
+
+   </div>
+`;
 export default () => html`
+
   <h1>Coming soon</h1>
   <p>
     We are company that believes in bringing diffrent cultures to the for front.
