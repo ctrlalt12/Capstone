@@ -1,16 +1,11 @@
 import html from "html-literal";
 
-import motiononly from "url:../assets/img/views/motiononly.jpeg;
+import motiononly from "url:../MotionRewards/motiononly.jpeg";
 
 export default state => html`
-   <div id="motiononly">
-      <img src="${motiononly}" alt="">
-      <div class="attribution">
-
-   </div>
-`;
-export default () => html`
-
+  <div id="motiononly">
+    <img src="${motiononly}" alt="logo" />
+  </div>
   <h1>Coming soon</h1>
   <p>
     We are company that believes in bringing diffrent cultures to the for front.
@@ -21,4 +16,6 @@ export default () => html`
     Motion Company is a place where vendors and motion members connect in an
     unique way .
   </p>
+
+  <div class="attribution"></div>
 `;

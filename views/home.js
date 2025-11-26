@@ -1,18 +1,12 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <div class="logo">M</div>
   <h2>Where Motion Moves Forward</h2>
+
+  <h3>
+    The weather in ${state.weather.city} is ${state.weather.description}.
+    Temperature is ${state.weather.temp}F, and it feels like
+    ${state.weather.feelsLike}F.
+  </h3>
 `;
-already: match => {
-    const view = match?.data?.view ? camelCase(match.data.view) : "home";
-
-    render(store[view]);
-  },
-  after: match => {
-    router.updatePageLinks();
-
-    // add menu toggle to bars icon in nav bar
-    document.querySelector(".fa-bars").addEventListener("click", () => {
-      document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-    });
