@@ -1,0 +1,106 @@
+body{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+background: #e8e8e8;
+color: black;
+padding: 25px;
+}
+
+header {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+.logo{
+  width: 50px;
+  height: 50px;
+  background: purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+}
+
+.comment-app {
+  background: #000; /* dark mode */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: sans-serif;
+}
+
+.comment-input-box textarea {
+  width: 100%;
+  background: #111;
+  color: white;
+  border: 1px solid purple;
+  padding: 10px;
+  border-radius: 8px;
+
+}
+
+.comment-tools {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.postBtn {
+  background: green;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.postBtn:hover {
+  background: #00cc00;
+}
+
+.charCount {
+  color: purple;
+  font-size: 14px;
+}
+
+.comment {
+  background: white;
+  margin-top: 15px;
+  padding: 12px;
+  border-left: 3px solid purple;
+  border-radius: 5px;
+}
+
+.comment-actions {
+  margin-top: 8px;
+  display: flex;
+
+}
+
+.comment-actions button {
+  background: none;
+  border: none;
+  color: purple;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: medium;
+}
+
+.comment-actions .delete-btn {
+  color: red;
+}
+
+.comment-actions .like-btn {
+  color: green;
+}
+
+footer {
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  color: var(--muted-color);
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  margin-top: var(--spacing-3xl);

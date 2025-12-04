@@ -4,7 +4,7 @@ import motiononly from "url:../MotionRewards/motiononly.jpeg";
 
 export default state => html`
   <div id="motiononly">
-    <img src="${motiononly}" alt="logo" />
+    <img src="${motiononly}" alt="logo" width="1000" />
   </div>
   <h1>Coming soon</h1>
   <p>
