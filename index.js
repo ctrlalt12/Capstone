@@ -23,7 +23,25 @@ router.hooks({
 
     // Add a switch case statement to handle multiple routes
     switch (view) {
+     case "comments" :
+ axios
+          .get(
+`${process.env.MOTION_API_URL}/comments`)
+          .then(response => {
+         store.comments.comments =response.data
+
+            console.log(response.data)
+            done();
+        })
+        .catch((err) => {
+          console.log(err);
+          done();
+        });
+        break;
+
+
       case "home":
+
         axios
           .get(
             `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&units=imperial&q=st%20louis`
@@ -56,6 +74,43 @@ router.hooks({
   after:(match)=>{
 const view = match?.data?.view ? camelCase(match.data.view) : "home";
  router.updatePageLinks();
+if (view === "comments") {
+      // Add an event handler for the submit button on the form
+      document.querySelector("form").addEventListener("submit", event => {
+        event.preventDefault();
+
+        // Get the form element
+        const inputList = event.target.elements;
+        console.log("Input Element List", inputList);
+
+
+
+        // Iterate over the toppings array
+
+
+
+
+        // Create a request body object to send to the API
+        const requestData = {
+          comment: inputList.comment.value,
+        }
+        // Log the request body to the console
+        console.log("request Body", requestData);
+
+        axios
+          // Make a POST request to the API to create a new pizza
+          .post(`${process.env.MOTION_API_URL}/comments`, requestData)
+          .then(response => {
+            //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
+            store.comments.comments.push(response.data);
+            router.navigate("/comments");
+          })
+          // If there is an error log it to the console
+          .catch(error => {
+            console.log("It puked", error);
+          });
+      });
+    }
   }
 });
 

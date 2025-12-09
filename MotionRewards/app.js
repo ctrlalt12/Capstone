@@ -62,5 +62,4 @@ app.get("/weather/:city", (request, response) => {
 
 const server = app.listen(PORT, () =>
   console.log(`Listening on port ${server.ad]dress().port}`)
-);
- .
+;

@@ -1,0 +1,100 @@
+import { Router } from "express";
+import Comment from "../models/comment.js";
+
+const router = Router();
+// Create pizza route
+router.post("/", async (request, response) => {
+  try {
+    const newComment = new Comment(request.body);
+
+    const data = await newComment.save();
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    if ("name" in error && error.name === "ValidationError")
+      return response.status(400).json(error.errors);
+
+    return response.status(500).json(error.errors);
+  }
+});
+// Update a single pizza by ID
+router.put("/:id", async (request, response) => {
+  try {
+    const body = request.body;
+
+    const data = await Comment.findByIdAndUpdate(
+      request.params.id,
+      {
+        $set: {
+          comment: body.comment
+        }
+      },
+      {
+        new: true,
+        runValidators: true
+      }
+    );
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    if ("name" in error && error.name === "ValidationError")
+      return response.status(400).json(error.errors);
+
+    return response.status(500).json(error.errors);
+  }
+});
+// Get all pizzas route /pizzas/ GET
+router.get("/", async (request, response) => {
+  try {
+    // Store the query params into a JavaScript Object
+    const query = request.query; // Defaults to an empty object {} {crust='thin'}
+
+    const data = await Comment.find(query);
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    return response.status(500).json(error.errors);
+  }
+});
+
+// Get a single pizza by ID /pizzas/{id} GET
+router.get("/:id", async (request, response) => {
+  try {
+    const data = await Comment.findById(request.params.id);
+
+    if (data === null)
+      response.status(404).json({ message: "Pizza not found" });
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    return response.status(500).json(error.errors);
+  }
+});
+
+// Delete a pizza by ID /pizzas/{id} DELETE
+router.delete("/:id", async (request, response) => {
+  try {
+    const data = await Comment.findByIdAndDelete(request.params.id);
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    return response.status(500).json(error.errors);
+  }
+});
+
+export default router;
