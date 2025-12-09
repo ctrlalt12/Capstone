@@ -18,6 +18,14 @@ export default store => html`
         </div>
       </div>
     </form>
-    <div id="commentList">${store.comments}</div>
+    <ul>
+    ${store.comments
+      .map(comment => {
+        return `<li>${comment.comment}</li>
+        `;
+      })
+      .join("")}
+    </ul>
+
   </div>
 `;
